@@ -5,7 +5,7 @@
 
 namespace v8 {
 
-  char* JsRuntime::execute(char* js) {
+  char* JavaScript::execute(char* js) {
 
     // Create a stack-allocated handle scope.
     HandleScope handle_scope;

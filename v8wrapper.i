@@ -5,7 +5,7 @@
 %}
 namespace v8 {
 
- class JsRuntime {
+ class JavaScript {
   public:
     static char* execute(char* js);
   };

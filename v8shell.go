@@ -16,7 +16,7 @@ func main() {
 	bytes,err := io.ReadFile(*scriptname)
 	if err == nil {
 
-		var r string = v8.JsRuntimeExecute(string(bytes))
+		var r string = v8.JavaScriptExecute(string(bytes))
 		fmt.Printf("Result: %s\n",r)
 	}
 }
