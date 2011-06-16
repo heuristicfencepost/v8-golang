@@ -1,5 +1,7 @@
 #include "v8wrapper.h"
 #include <v8.h>
+#include <string.h>
+#include <stdlib.h>
 
 namespace v8 {
 
@@ -30,8 +32,10 @@ namespace v8 {
     // Convert the result to an ASCII string and return it
     String::AsciiValue ascii(result);
 
-    printf("%s\n", *ascii);
-    return *ascii;
+    // Grab some memory from the heap and copy our output onto it.
+    char* foo = (char*)malloc(strlen(*ascii));
+    strcpy(foo,*ascii);
+    return foo;
   }
 }
 
