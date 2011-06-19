@@ -18,5 +18,9 @@ func main() {
 
 		var r string = v8.JavaScriptExecute(string(bytes))
 		fmt.Printf("Result: %s\n",r)
+
+		// Note the lack of an explicit free() operation for strings generated from char* values returned
+		// by the v8 runtime.  Working assumption is that garbage collection will clean up the necessary
+		// heap memory.  Not 100% sure if this will also clean up the SWIG proxy objects.
 	}
 }

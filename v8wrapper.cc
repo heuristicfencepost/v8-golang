@@ -5,34 +5,23 @@
 
 namespace v8 {
 
+  // Every call to execute() results in the creation of a new context and
+  // scope.  Per the v8 docs this should be a reasonable use case.
   char* JavaScript::execute(char* js) {
 
-    // Create a stack-allocated handle scope.
     HandleScope handle_scope;
-    
-    // Create a new context.
     Persistent<Context> context = Context::New();
-    
-    // Enter the created context for compiling and
-    // running the input script. 
     Context::Scope context_scope(context);
     
-    // Create a string containing the JavaScript source code.
     Handle<String> source = String::New(js);
-    
-    // Compile the source code.
     Handle<Script> script = Script::Compile(source);
-    
-    // Run the script to get the result.
     Handle<Value> result = script->Run();
-    
-    // Dispose the persistent context.
+
     context.Dispose();
-    
-    // Convert the result to an ASCII string and return it
+
     String::AsciiValue ascii(result);
 
-    // Grab some memory from the heap and copy our output onto it.
+    // TODO: This isn't very C++ like...
     char* foo = (char*)malloc(strlen(*ascii));
     strcpy(foo,*ascii);
     return foo;

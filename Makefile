@@ -1,5 +1,3 @@
-HOME=/home/mersault
-
 include $(GOROOT)/src/Make.inc
 TARG=v8
 include $(GOROOT)/src/Make.pkg
